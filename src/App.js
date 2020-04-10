@@ -6,10 +6,8 @@ import TreeContainer from './containers/TreeContainer';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={tt2} className="tt2-logo" alt="logo" />
-        <TreeContainer />
-      </header>
+      <img src={tt2} className="tt2-logo" alt="logo" />
+      <TreeContainer />
     </div>
   );
 }
