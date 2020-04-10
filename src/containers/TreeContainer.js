@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import TreeCard from '../components/TreeCard';
+import '../style/App.css';
 
 export class TreeContainer extends Component {
 
@@ -56,7 +57,8 @@ normalizeString = (str) => {
   }
 
   backToMap = () => {
-    this.setState({ treeSelected: {}, clicked: false })
+    // this.setState({ treeSelected: {}, clicked: false })
+    // cannot call setState on component that is not mounted
   }
 
   render() {
