@@ -48,7 +48,7 @@ normalizeString = (str) => {
 
   handleClick = (props, marker, e) => {
     this.setState({ treeSelected: props.tree, clicked: true });
-    this.fetchTrees();
+    // reset map's center orientation when going back to view full map
   }
 
   componentDidMount() {
@@ -62,7 +62,6 @@ normalizeString = (str) => {
   render() {
     const { normalizeString, handleClick, backToMap } = this;
     const { treeSelected, clicked } = this.state;
-    const { spc_common, address, zip_city, zipcode } = treeSelected
 
     const theTrees = this.state.trees.map((tree) => {
       return <Marker
@@ -98,5 +97,5 @@ normalizeString = (str) => {
 }
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyB8vbw7QyXbdRl5CC0ltDbCXl2sltAoCm8'
+  apiKey: process.env.REACT_APP_GOOGLE_KEY
 })(TreeContainer)
