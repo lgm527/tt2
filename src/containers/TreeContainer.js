@@ -17,13 +17,15 @@ export class TreeContainer extends Component {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'X-App-Token': 'muZjL5D3H5UGU2TUlPOR4IjM6'
+        'X-App-Token': process.env.REACT_APP_TREE_KEY
       }
     })
     .then(res => res.json())
     .then(theTrees => {
       this.setState({
-        trees: theTrees
+        trees: theTrees,
+        clicked: false,
+        treeSelected: {}
       })
     })
   }
@@ -59,11 +61,11 @@ normalizeString = (str) => {
   backToMap = () => {
     // this.setState({ treeSelected: {}, clicked: false })
     // cannot call setState on component that is not mounted
+    this.fetchTrees();
   }
 
   render() {
     const { normalizeString, handleClick, backToMap } = this;
-    const { treeSelected, clicked } = this.state;
 
     const theTrees = this.state.trees.map((tree) => {
       return <Marker
@@ -78,15 +80,16 @@ normalizeString = (str) => {
 
     return (
       <div>
-        { clicked ?
+        { this.state.clicked ?
           <TreeCard
-          tree={treeSelected}
+          tree={this.state.treeSelected}
           normalizeString={normalizeString}
           backToMap={backToMap}
           />
           : <Map
               google={this.props.google}
               zoom={14}
+              initialCenter={{lat: 40.703316, lng: -73.988145}}
               center={{lat: 40.703316, lng: -73.988145}}
               style={{width: '30%', height: '60%', margin: '1% 0 0 15%', cursor: 'pointer'}}
               yesIWantToUseGoogleMapApiInternals={true}
