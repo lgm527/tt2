@@ -14,7 +14,7 @@ export default class TreeCard extends Component {
         <p><b>Status:</b> {normalizeString(status)}</p>
         <p><b>Health:</b> {normalizeString(health)}</p>
         <p><b>Steward:</b> {steward}</p>
-        <p>⬅︎</p>
+        <p onClick={backToMap} style={{cursor: 'pointer'}}>⬅︎</p>
       </div>
     )
   }
