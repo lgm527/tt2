@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import TreeCard from '../components/TreeCard';
 import '../style/App.css';
 
-export class TreeContainer extends Component {
+export class TreeContainer extends React.Component {
 
   state = {
     trees: [],
@@ -91,7 +91,7 @@ normalizeString = (str) => {
               zoom={14}
               initialCenter={{lat: 40.703316, lng: -73.988145}}
               center={{lat: 40.703316, lng: -73.988145}}
-              style={{width: '50%', height: '70%', margin: '1% 0 0 15%', cursor: 'pointer', borderRadius: '10px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}
+              style={{cursor: 'pointer', borderRadius: '10px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}
               yesIWantToUseGoogleMapApiInternals={true}
               >
               {theTrees}
