@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import TreeCard from '../components/TreeCard';
 import '../style/App.css';
 
-export class TreeContainer extends Component {
+export class TreeContainer extends React.Component {
 
   state = {
     trees: [],
