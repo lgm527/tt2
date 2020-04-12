@@ -1,7 +1,7 @@
 import React from 'react';
-import tt2 from './assets/tt2.png';
 import './style/App.css';
 import TreeContainer from './containers/TreeContainer';
+import tt2 from './assets/tt2.png';
 
 function App() {
   return (
