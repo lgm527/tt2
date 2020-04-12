@@ -12,7 +12,7 @@ export class TreeContainer extends React.Component {
   }
 
   fetchTrees() {
-    fetch(`https://data.cityofnewyork.us/resource/uvpi-gqnh.json?&status=Alive&steward=None`, {
+    fetch('https://data.cityofnewyork.us/resource/uvpi-gqnh.json?&status=Alive&steward=None', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -66,8 +66,9 @@ normalizeString = (str) => {
 
   render() {
     const { normalizeString, handleClick, backToMap } = this;
+    let theTrees = [];
 
-    const theTrees = this.state.trees.map((tree) => {
+    theTrees = this.state.trees.map((tree) => {
       return <Marker
             position={{lat: tree.latitude, lng: tree.longitude}}
             icon={{url: 'http://maps.google.com/mapfiles/ms/icons/tree.png'}}
@@ -79,7 +80,7 @@ normalizeString = (str) => {
     })
 
     return (
-      <div>
+      <div id='tree'>
         { this.state.clicked ?
           <TreeCard
           tree={this.state.treeSelected}
