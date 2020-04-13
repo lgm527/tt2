@@ -1,9 +1,10 @@
 import React from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import GoogleMapReact from 'google-map-react';
 import TreeCard from '../components/TreeCard';
 import '../style/App.css';
+import tt2 from '../assets/tt2.png';
 
-export class TreeContainer extends React.Component {
+export default class TreeContainer extends React.Component {
 
   state = {
     trees: [],
@@ -50,8 +51,8 @@ normalizeString = (str) => {
     return res
   }
 
-  handleClick = (props, marker, e) => {
-    this.setState({ treeSelected: props.tree, clicked: true });
+  handleClick = (tree) => {
+    this.setState({ treeSelected: tree, clicked: true });
     // reset map's center orientation when going back to view full map
   }
 
@@ -69,39 +70,40 @@ normalizeString = (str) => {
     const { normalizeString, handleClick, backToMap } = this;
     const wburg = {lat: 40.714700, lng: -73.956120}
 
-    const theTrees = this.state.trees.map((tree) => {
-      return <Marker
-            position={{lat: tree.latitude, lng: tree.longitude}}
-            icon={{url: 'http://maps.google.com/mapfiles/ms/icons/tree.png'}}
-            onClick={handleClick}
-            key={tree.tree_id}
-            tree={tree}
+    const Marker = props => {
+      return <img
+            src='http://maps.google.com/mapfiles/ms/icons/tree.png'
+            onClick={() => handleClick(props.tree)}
+            key={props.tree.tree_id}
+            tree={props.tree}
             style={{cursor: 'pointer'}}
+            alt='marker'
           />
+    }
+
+    const theTrees = this.state.trees.map((tree) => {
+      return <Marker tree={tree} lat={tree.latitude} lng={tree.longitude} key={tree.tree_id} />
     })
 
     return (
       <div id='tree'>
+      <img src={tt2} className="tt2-logo" alt="logo" />
         { this.state.clicked ?
           <TreeCard
           tree={this.state.treeSelected}
           normalizeString={normalizeString}
           backToMap={backToMap}
           />
-          : <Map
-              google={this.props.google}
-              zoom={14}
-              initialCenter={wburg}
-              center={wburg}
+          : <div style={{height: '30vh', width: '50%', marginTop: '5%'}}><GoogleMapReact
+              bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_KEY }}
+              defaultZoom={14}
+              defaultCenter={wburg}
+              yesIWantToUseGoogleMapApiInternals={true}
               style={{cursor: 'pointer', borderRadius: '10px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}
               >
               {theTrees}
-            </Map> }
+            </GoogleMapReact></div> }
       </div>
     )
   }
 }
-
-export default GoogleApiWrapper({
-  apiKey: process.env.REACT_APP_GOOGLE_KEY
-})(TreeContainer)
