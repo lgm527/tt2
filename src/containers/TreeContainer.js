@@ -20,6 +20,7 @@ export class TreeContainer extends React.Component {
         'X-App-Token': process.env.REACT_APP_TREE_KEY
       }
     })
+    .catch(error => console.log(error))
     .then(res => res.json())
     .then(theTrees => {
       this.setState({
@@ -66,9 +67,8 @@ normalizeString = (str) => {
 
   render() {
     const { normalizeString, handleClick, backToMap } = this;
-    let theTrees = [];
 
-    theTrees = this.state.trees.map((tree) => {
+    const theTrees = this.state.trees.map((tree) => {
       return <Marker
             position={{lat: tree.latitude, lng: tree.longitude}}
             icon={{url: 'http://maps.google.com/mapfiles/ms/icons/tree.png'}}
@@ -92,8 +92,7 @@ normalizeString = (str) => {
               zoom={14}
               initialCenter={{lat: 40.703316, lng: -73.988145}}
               center={{lat: 40.703316, lng: -73.988145}}
-              style={{cursor: 'pointer', borderRadius: '10px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}
-              yesIWantToUseGoogleMapApiInternals={true}
+              style={{cursor: 'pointer', borderRadius: '10px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)', height: '100%'}}
               >
               {theTrees}
             </Map> }
