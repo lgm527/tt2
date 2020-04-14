@@ -12,6 +12,7 @@ export default class TreeContainer extends React.Component {
     clicked: false,
     treeSelected: {},
     neighborhood: 'Williamsburg',
+    center: { lat: 40.714700, lng: -73.956120 }
   }
 
   fetchTrees(neighborhood) {
@@ -29,7 +30,12 @@ export default class TreeContainer extends React.Component {
       this.setState({
         trees: theTrees,
         clicked: false,
-        treeSelected: {}
+        treeSelected: {},
+        neighborhood: neighborhood,
+        center: {
+          lat: Number(theTrees[50].latitude),
+          lng: Number(theTrees[50].longitude)
+        }
       })
     })
   }
@@ -71,9 +77,8 @@ export default class TreeContainer extends React.Component {
   }
 
   render() {
+    console.log(this.state.center);
     const { normalizeString, handleClick, backToMap } = this;
-    const wburg = { lat: 40.714700, lng: -73.956120 }
-    const center = () => this.state.trees === [] ? null : { lat: this.state.trees[5].latitude, lng: this.state.trees[5].longitude }
 
     const Marker = props => {
       return <img
@@ -104,8 +109,9 @@ export default class TreeContainer extends React.Component {
           <div style={{height: '30vh', width: '50%', marginTop: '5%'}}>
             <GoogleMapReact
               bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_KEY }}
-              defaultZoom={15}
-              defaultCenter={wburg}
+              zoom={15}
+              defaultCenter={{ lat: 40.714700, lng: -73.956120 }}
+              center={this.state.center}
               yesIWantToUseGoogleMapApiInternals={true}
               style={{cursor: 'pointer', borderRadius: '10px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}
               >
