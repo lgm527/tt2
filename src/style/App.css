@@ -5,3 +5,7 @@
   align-items: center;
   text-align: center;
 }
+
+.header {
+  z-index: 2;
+}

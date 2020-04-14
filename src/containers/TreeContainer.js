@@ -1,6 +1,7 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import TreeCard from '../components/TreeCard';
+import Dropdown from '../components/Dropdown';
 import '../style/App.css';
 import tt2 from '../assets/tt2.png';
 
@@ -48,12 +49,11 @@ normalizeString = (str) => {
         res = theString.charAt(0).toUpperCase() + theString.slice(1).toLowerCase()
       }
     }
-    return res
+    return res;
   }
 
   handleClick = (tree) => {
     this.setState({ treeSelected: tree, clicked: true });
-    // reset map's center orientation when going back to view full map
   }
 
   componentDidMount() {
@@ -61,8 +61,6 @@ normalizeString = (str) => {
   }
 
   backToMap = () => {
-    // this.setState({ treeSelected: {}, clicked: false })
-    // cannot call setState on component that is not mounted
     this.fetchTrees();
   }
 
@@ -87,14 +85,17 @@ normalizeString = (str) => {
 
     return (
       <div id='tree'>
-      <img src={tt2} className="tt2-logo" alt="logo" />
+        <img src={tt2} className='tt2-logo header' alt='logo'/>
+        { this.state.clicked ? null : <Dropdown /> }
         { this.state.clicked ?
           <TreeCard
           tree={this.state.treeSelected}
           normalizeString={normalizeString}
           backToMap={backToMap}
           />
-          : <div style={{height: '30vh', width: '50%', marginTop: '5%'}}><GoogleMapReact
+          :
+          <div style={{height: '30vh', width: '50%', marginTop: '5%'}}>
+            <GoogleMapReact
               bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_KEY }}
               defaultZoom={14}
               defaultCenter={wburg}
@@ -102,7 +103,8 @@ normalizeString = (str) => {
               style={{cursor: 'pointer', borderRadius: '10px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}
               >
               {theTrees}
-            </GoogleMapReact></div> }
+            </GoogleMapReact>
+          </div> }
       </div>
     )
   }
