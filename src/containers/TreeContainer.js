@@ -1,7 +1,8 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import TreeCard from '../components/TreeCard';
-import '../style/App.css';
+import Dropdown from '../components/Dropdown';
+import '../style/App.scss';
 import tt2 from '../assets/tt2.png';
 
 export default class TreeContainer extends React.Component {
@@ -10,10 +11,11 @@ export default class TreeContainer extends React.Component {
     trees: [],
     clicked: false,
     treeSelected: {},
+    neighborhood: 'Williamsburg',
   }
 
-  fetchTrees() {
-    fetch('https://data.cityofnewyork.us/resource/uvpi-gqnh.json?&status=Alive&steward=None', {
+  fetchTrees(neighborhood) {
+    fetch(`https://data.cityofnewyork.us/resource/uvpi-gqnh.json?nta_name=${neighborhood}&status=Alive&steward=None`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -32,7 +34,7 @@ export default class TreeContainer extends React.Component {
     })
   }
 
-normalizeString = (str) => {
+  normalizeString = (str) => {
   let res
   let theString
     if (str !== undefined && str !== null) {
@@ -48,27 +50,30 @@ normalizeString = (str) => {
         res = theString.charAt(0).toUpperCase() + theString.slice(1).toLowerCase()
       }
     }
-    return res
+    return res;
   }
 
   handleClick = (tree) => {
     this.setState({ treeSelected: tree, clicked: true });
-    // reset map's center orientation when going back to view full map
   }
 
   componentDidMount() {
-    this.fetchTrees();
+    this.fetchTrees(this.state.neighborhood);
   }
 
   backToMap = () => {
-    // this.setState({ treeSelected: {}, clicked: false })
-    // cannot call setState on component that is not mounted
-    this.fetchTrees();
+    this.fetchTrees(this.state.neighborhood);
+  }
+
+  updateNeighborhood = (neighborhood) => {
+    this.setState({ neighborhood: neighborhood });
+    this.fetchTrees(neighborhood);
   }
 
   render() {
     const { normalizeString, handleClick, backToMap } = this;
-    const wburg = {lat: 40.714700, lng: -73.956120}
+    const wburg = { lat: 40.714700, lng: -73.956120 }
+    const center = () => this.state.trees === [] ? null : { lat: this.state.trees[5].latitude, lng: this.state.trees[5].longitude }
 
     const Marker = props => {
       return <img
@@ -83,26 +88,30 @@ normalizeString = (str) => {
 
     const theTrees = this.state.trees.map((tree) => {
       return <Marker tree={tree} lat={tree.latitude} lng={tree.longitude} key={tree.tree_id} />
-    })
+    });
 
     return (
       <div id='tree'>
-      <img src={tt2} className="tt2-logo" alt="logo" />
+        <img src={tt2} className='tt2-logo header' alt='logo'/>
+        { this.state.clicked ? null : <Dropdown updateNeighborhood={this.updateNeighborhood}/> }
         { this.state.clicked ?
           <TreeCard
           tree={this.state.treeSelected}
           normalizeString={normalizeString}
           backToMap={backToMap}
           />
-          : <div style={{height: '30vh', width: '50%', marginTop: '5%'}}><GoogleMapReact
+          :
+          <div style={{height: '30vh', width: '50%', marginTop: '5%'}}>
+            <GoogleMapReact
               bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_KEY }}
-              defaultZoom={14}
+              defaultZoom={15}
               defaultCenter={wburg}
               yesIWantToUseGoogleMapApiInternals={true}
               style={{cursor: 'pointer', borderRadius: '10px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}
               >
               {theTrees}
-            </GoogleMapReact></div> }
+            </GoogleMapReact>
+          </div> }
       </div>
     )
   }
