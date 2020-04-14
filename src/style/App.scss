@@ -1,0 +1,29 @@
+#tree {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.header {
+  z-index: 2;
+}
+
+#dropdown {
+  border-radius: 5px;
+  border: solid 3px green;
+  &:focus {
+    outline: none;
+    border: double green;
+  }
+  option {
+    padding: 20px;
+  }
+  /* width: 100px; height: 100px;
+  background-color: #A0DE21;
+  -moz-border-radius: 100px 0px;
+  -webkit-border-radius: 100px 0px;
+  border-radius: 100px 0px;
+  transform: rotate(40deg); */
+}
