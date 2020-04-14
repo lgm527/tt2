@@ -12,7 +12,7 @@ export default class TreeContainer extends React.Component {
     clicked: false,
     treeSelected: {},
     neighborhood: 'Williamsburg',
-    center: { lat: 40.714700, lng: -73.956120 }
+    center: { lat: 0, lng: 0 }
   }
 
   fetchTrees(neighborhood) {
@@ -92,7 +92,7 @@ export default class TreeContainer extends React.Component {
 
     const theTrees = this.state.trees.map((tree) => {
       return <Marker tree={tree} lat={tree.latitude} lng={tree.longitude} key={tree.tree_id} />
-    });
+    });console.log(this.state.center);
 
     return (
       <div id='tree'>
@@ -109,7 +109,7 @@ export default class TreeContainer extends React.Component {
             <GoogleMapReact
               bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_KEY }}
               zoom={15}
-              defaultCenter={{ lat: 40.714700, lng: -73.956120 }}
+              defaultCenter={{ lat: 40.70513302, lng: -73.95067344 }}
               center={this.state.center}
               yesIWantToUseGoogleMapApiInternals={true}
               style={{cursor: 'pointer', borderRadius: '10px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}
