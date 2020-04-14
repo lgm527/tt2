@@ -77,7 +77,6 @@ export default class TreeContainer extends React.Component {
   }
 
   render() {
-    console.log(this.state.center);
     const { normalizeString, handleClick, backToMap } = this;
 
     const Marker = props => {
@@ -98,7 +97,7 @@ export default class TreeContainer extends React.Component {
     return (
       <div id='tree'>
         <img src={tt2} className='tt2-logo header' alt='logo'/>
-        { this.state.clicked ? null : <Dropdown updateNeighborhood={this.updateNeighborhood}/> }
+        { this.state.clicked ? null : <Dropdown updateNeighborhood={this.updateNeighborhood} neighborhood={this.state.neighborhood}/> }
         { this.state.clicked ?
           <TreeCard
           tree={this.state.treeSelected}
