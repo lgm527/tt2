@@ -1,17 +1,13 @@
+$tree-green: mediumseagreen;
+
 #dropdown {
   border-radius: 5px;
-  border: solid 3px green;
+  border: solid 3px $tree-green;
   &:focus {
     outline: none;
-    border: double green;
+    border: double $tree-green;
   }
   option {
     padding: 20px;
   }
-  /* width: 100px; height: 100px;
-  background-color: #A0DE21;
-  -moz-border-radius: 100px 0px;
-  -webkit-border-radius: 100px 0px;
-  border-radius: 100px 0px;
-  transform: rotate(40deg); */
 }
