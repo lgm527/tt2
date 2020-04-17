@@ -12,10 +12,11 @@ export default class TreeContainer extends React.Component {
     clicked: false,
     treeSelected: {},
     neighborhood: 'Williamsburg',
+    center: { lat: 0, lng: 0 }
   }
 
   fetchTrees(neighborhood) {
-    fetch(`https://data.cityofnewyork.us/resource/uvpi-gqnh.json?nta_name=${neighborhood}&status=Alive&steward=None`, {
+    fetch(`https://data.cityofnewyork.us/resource/uvpi-gqnh.json?nta_name=${neighborhood}&status=Alive&steward=None&$limit=3000`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -29,7 +30,12 @@ export default class TreeContainer extends React.Component {
       this.setState({
         trees: theTrees,
         clicked: false,
-        treeSelected: {}
+        treeSelected: {},
+        neighborhood: neighborhood,
+        center: {
+          lat: Number(theTrees[50].latitude),
+          lng: Number(theTrees[50].longitude)
+        }
       })
     })
   }
@@ -72,8 +78,6 @@ export default class TreeContainer extends React.Component {
 
   render() {
     const { normalizeString, handleClick, backToMap } = this;
-    const wburg = { lat: 40.714700, lng: -73.956120 }
-    const center = () => this.state.trees === [] ? null : { lat: this.state.trees[5].latitude, lng: this.state.trees[5].longitude }
 
     const Marker = props => {
       return <img
@@ -93,7 +97,7 @@ export default class TreeContainer extends React.Component {
     return (
       <div id='tree'>
         <img src={tt2} className='tt2-logo header' alt='logo'/>
-        { this.state.clicked ? null : <Dropdown updateNeighborhood={this.updateNeighborhood}/> }
+        { this.state.clicked ? null : <Dropdown updateNeighborhood={this.updateNeighborhood} neighborhood={this.state.neighborhood}/> }
         { this.state.clicked ?
           <TreeCard
           tree={this.state.treeSelected}
@@ -104,8 +108,9 @@ export default class TreeContainer extends React.Component {
           <div style={{height: '30vh', width: '50%', marginTop: '5%'}}>
             <GoogleMapReact
               bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_KEY }}
-              defaultZoom={15}
-              defaultCenter={wburg}
+              zoom={15}
+              defaultCenter={{ lat: 40.70513302, lng: -73.95067344 }}
+              center={this.state.center}
               yesIWantToUseGoogleMapApiInternals={true}
               style={{cursor: 'pointer', borderRadius: '10px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}
               >

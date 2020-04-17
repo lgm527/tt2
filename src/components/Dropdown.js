@@ -14,7 +14,6 @@ export default class Dropdown extends React.Component {
   }
 
   render() {
-
     const neighborhoods = [
     'Allerton-Pelham Gardens',
     "Annadale-Huguenot-Prince's Bay-Eltingville",
@@ -206,7 +205,7 @@ export default class Dropdown extends React.Component {
 
     return (
       <div className='header'>
-        <select id='dropdown' onChange={this.handleChange} defaultValue='Williamsburg'>
+        <select id='dropdown' onChange={this.handleChange} defaultValue={this.props.neighborhood}>
           {options}
         </select>
       </div>
