@@ -13,7 +13,7 @@ export default function TreeCard(props) {
       <p><b>Status:</b> {normalizeString(status)}</p>
       <p><b>Health:</b> {normalizeString(health)}</p>
       <p><b>Steward:</b> {steward}</p>
-      <p onClick={backToMap} style={{cursor: 'pointer'}}>⬅︎</p>
+      <p onClick={backToMap} style={{cursor: 'pointer', height: '100vh', width: '100vw'}}>⬅︎</p>
     </div>
   )
 

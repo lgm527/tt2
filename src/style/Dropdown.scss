@@ -1,0 +1,13 @@
+$tree-green: mediumseagreen;
+
+#dropdown {
+  border-radius: 5px;
+  border: solid 3px $tree-green;
+  &:focus {
+    outline: none;
+    border: double $tree-green;
+  }
+  option {
+    padding: 20px;
+  }
+}

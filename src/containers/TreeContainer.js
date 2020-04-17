@@ -81,7 +81,7 @@ export default class TreeContainer extends React.Component {
 
     const Marker = props => {
       return <img
-            src='http://maps.google.com/mapfiles/ms/icons/tree.png'
+            src='https://maps.google.com/mapfiles/ms/icons/tree.png'
             onClick={() => handleClick(props.tree)}
             key={props.tree.tree_id}
             tree={props.tree}
