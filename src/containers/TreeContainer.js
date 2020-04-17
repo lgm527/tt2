@@ -16,7 +16,7 @@ export default class TreeContainer extends React.Component {
   }
 
   fetchTrees(neighborhood) {
-    fetch(`https://data.cityofnewyork.us/resource/uvpi-gqnh.json?nta_name=${neighborhood}&status=Alive&steward=None`, {
+    fetch(`https://data.cityofnewyork.us/resource/uvpi-gqnh.json?nta_name=${neighborhood}&status=Alive&steward=None&$limit=3000`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -92,7 +92,7 @@ export default class TreeContainer extends React.Component {
 
     const theTrees = this.state.trees.map((tree) => {
       return <Marker tree={tree} lat={tree.latitude} lng={tree.longitude} key={tree.tree_id} />
-    });console.log(this.state.center);
+    });
 
     return (
       <div id='tree'>
