@@ -1,5 +1,6 @@
 import React from 'react';
-import '../style/Dropdown.scss'
+import Select from 'react-select';
+import '../style/Dropdown.scss';
 
 export default class Dropdown extends React.Component {
 
@@ -9,8 +10,8 @@ export default class Dropdown extends React.Component {
     }
   }
 
-  handleChange = (event) => {
-    this.props.updateNeighborhood(this.convertStringToNTACode(event.target.value));
+  handleChange = (neighborhood) => {
+    this.props.updateNeighborhood(this.convertStringToNTACode(neighborhood.value));
   }
 
   render() {
@@ -201,13 +202,18 @@ export default class Dropdown extends React.Component {
     'Woodside'
   ];
 
-    const options = neighborhoods.map((neighborhood) => <option value={neighborhood} key={neighborhood}>{neighborhood}</option>);
+    const options = neighborhoods.map((neighborhood) => {
+      return {value: neighborhood, label: neighborhood};
+    });
 
     return (
       <div className='header'>
-        <select id='dropdown' onChange={this.handleChange} defaultValue={this.props.neighborhood}>
-          {options}
-        </select>
+        <Select
+          id='dropdown'
+          options={options}
+          onChange={this.handleChange}
+          defaultValue={this.props.neighborhood}
+        />
       </div>
     )
   }
