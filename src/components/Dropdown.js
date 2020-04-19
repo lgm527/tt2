@@ -4,6 +4,10 @@ import '../style/Dropdown.scss';
 
 export default class Dropdown extends React.Component {
 
+  state = {
+    neighborhood: 'Williamsburg'
+  }
+
   convertStringToNTACode = (ntaName) => {
     if (ntaName !== undefined && ntaName !== ''){
      return ntaName.replace(/[\s]/g, '%20');
@@ -11,6 +15,7 @@ export default class Dropdown extends React.Component {
   }
 
   handleChange = (neighborhood) => {
+    this.setState({neighborhood})
     this.props.updateNeighborhood(this.convertStringToNTACode(neighborhood.value));
   }
 
