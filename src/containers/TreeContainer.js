@@ -2,7 +2,7 @@ import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import TreeCard from '../components/TreeCard';
 import Dropdown from '../components/Dropdown';
-import '../style/App.scss';
+import '../style/TreeContainer.scss';
 import tt2 from '../assets/tt2.png';
 
 export default class TreeContainer extends React.Component {
@@ -108,7 +108,7 @@ export default class TreeContainer extends React.Component {
           <div style={{height: '30vh', width: '50%', marginTop: '5%'}}>
             <GoogleMapReact
               bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_KEY }}
-              zoom={15}
+              zoom={16}
               defaultCenter={{ lat: 40.70513302, lng: -73.95067344 }}
               center={this.state.center}
               yesIWantToUseGoogleMapApiInternals={true}

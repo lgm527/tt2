@@ -5,10 +5,7 @@ $tree-green: mediumseagreen;
 }
 
 #dropdown {
+  width: 100vw;
   border-radius: 5px;
-  border: solid 3px $tree-green;
-  &:focus {
-    outline: none;
-    border: double $tree-green;
-  }
+  border: solid 5px $tree-green;
 }
