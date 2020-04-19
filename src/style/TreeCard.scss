@@ -1,0 +1,15 @@
+$tree-green: mediumseagreen;
+
+.treeCard {
+  height: 100vh;
+  width: 100vw;
+  #arrow {
+    cursor: pointer;
+    &:hover {
+      color: white;
+    }
+    &:active {
+      color: black;
+    }
+  }
+}
