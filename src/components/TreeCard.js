@@ -24,7 +24,7 @@ export default function TreeCard(props) {
       <p><b>Status:</b> {status}</p>
       <p><b>Health:</b> {health}</p>
       <p><b>Steward:</b> {steward}</p>
-      <p>Would you like to take care of this tree? Email the <span role='img' aria-label='tree'>🌳</span>'s info:</p>
+      <p>Want to take care of this <span role='img' aria-label='tree'>🌳</span>? Share it's address:</p>
       <EmailTree species={spc_common} address={fullAddress}/>
       <p onClick={backToMap} id='arrow'>⬅︎ back to map ⬅︎</p>
     </div>
