@@ -19,7 +19,7 @@ export default function TreeCard(props) {
   return(
     <div className='treeCard'>
       <p><b>Species:</b> {spc_common} <i>({spc_latin})</i></p>
-      <p><b>Location:</b> fullAddress
+      <p><b>Location:</b> {fullAddress}
       </p>
       <p><b>Status:</b> {status}</p>
       <p><b>Health:</b> {health}</p>
