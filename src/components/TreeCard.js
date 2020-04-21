@@ -1,5 +1,6 @@
 import React from 'react';
 import '../style/TreeCard.scss';
+import EmailTree from './EmailTree';
 
 export default function TreeCard(props) {
 
@@ -13,17 +14,18 @@ export default function TreeCard(props) {
   }
 
   const { health, steward, spc_common, address, zip_city, zipcode, status, spc_latin } = normalizedTree;
+  const fullAddress = `${address} ${zip_city}, NY ${zipcode}`
 
   return(
     <div className='treeCard'>
       <p><b>Species:</b> {spc_common} <i>({spc_latin})</i></p>
-      <p><b>Location:</b> {address} {zip_city}, NY {zipcode}
+      <p><b>Location:</b> fullAddress
       </p>
       <p><b>Status:</b> {status}</p>
       <p><b>Health:</b> {health}</p>
       <p><b>Steward:</b> {steward}</p>
       <p>Would you like to take care of this tree? Email the <span role='img' aria-label='tree'>🌳</span>'s info:</p>
-      <p>Enter Email: PLACEHOLDER for email input and send button <span role='img' aria-label='envelope'>✉️</span></p>
+      <EmailTree species={spc_common} address={fullAddress}/>
       <p onClick={backToMap} id='arrow'>⬅︎ back to map ⬅︎</p>
     </div>
   )
