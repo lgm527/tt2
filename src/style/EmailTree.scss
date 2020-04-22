@@ -1,0 +1,12 @@
+form > * {
+  margin: 5px;
+}
+
+.btn {
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  &:hover {
+    background-color: mediumspringgreen;
+  }
+}

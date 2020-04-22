@@ -44,7 +44,7 @@ export default class EmailTree extends React.Component {
         <form onSubmit={this.onSubmit}>
           <label>Email: </label>
           <input type='email' placeholder='email address' name='email' id='email' value={this.state.email} onChange={this.onChange} />
-          <input type='submit' value='Send' />
+          <input type='submit' value='Send' className='btn' />
         </form>
       </div>
     )
