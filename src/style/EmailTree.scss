@@ -3,10 +3,14 @@ form > * {
 }
 
 .btn {
+  font-weight: bold;
+  background-color: black;
+  color: white;
   border-radius: 5px;
   padding: 5px;
   cursor: pointer;
   &:hover {
-    background-color: mediumspringgreen;
+    background-color: white;
+    color: black;
   }
 }
