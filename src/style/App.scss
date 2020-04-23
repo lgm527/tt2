@@ -1,0 +1,19 @@
+.footer {
+  bottom: 0;
+  z-index: 2;
+  position: fixed;
+  text-align: center;
+  width: 98%;
+  background-color: rgba(0, 0, 0, .1);
+  a {
+    color: black;
+    &:hover {
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 2px 2px rgba(255,255,255,1);
+    }
+  }
+}

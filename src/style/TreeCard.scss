@@ -1,0 +1,23 @@
+.treeCard {
+  height: 100vh;
+  width: 100vw;
+  b {
+    font-family: 'Manrope', sans-serif;
+  }
+  #arrow {
+    cursor: pointer;
+    font-family: 'Manrope', sans-serif;
+    color: white;
+    background-color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    &:hover {
+      color: black;
+      background-color: white;
+    }
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 2px 2px rgba(255,255,255,1);
+    }
+  }
+}
