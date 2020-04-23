@@ -26,7 +26,7 @@ export default function TreeCard(props) {
       <p><b>Diameter:</b> {stump_diam === '0' ? tree_dbh : stump_diam} inches</p>
       <p><b>Signs of Stewardship:</b> {steward}</p>
       <p>Want to steward this <span role='img' aria-label='tree'>🌳</span>? Share it's details:</p>
-      <EmailTree tree={normalizedTree}/>
+      <EmailTree tree={normalizedTree} fullAddress={fullAddress}/>
       <span onClick={backToMap} id='arrow' role='button' tabIndex={0}>⬅︎ back to map ⬅︎</span>
     </div>
   )

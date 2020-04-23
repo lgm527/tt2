@@ -26,7 +26,7 @@ export default class EmailTree extends React.Component {
      name: this.state.name,
      email: this.state.email,
      species: this.props.tree.spc_common,
-     address: this.props.tree.address,
+     address: this.props.fullAddress,
      status: this.props.tree.status,
      health: this.props.tree.health,
      diameter: diam
@@ -62,9 +62,8 @@ export default class EmailTree extends React.Component {
 }
 
 
-
-
-
+// EmailTreeDetails:
+// -----
 // Hey there, {{name}} has shared a tree with you!
 // The {{species}} at {{address}} needs some love, here are the details:
 // Status: {{status}}
