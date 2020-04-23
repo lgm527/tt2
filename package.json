@@ -2,7 +2,7 @@
   "name": "tt2",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://lgm527.github.io/tt2/",
+  "homepage": "https://lgm527.github.io/tt2",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
