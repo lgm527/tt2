@@ -1,0 +1,11 @@
+#tree {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+a[title="Report errors in the road map or imagery to Google"] {
+    display: none !important;
+}

@@ -1,24 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './style/App.scss';
+import TreeContainer from './containers/TreeContainer';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <TreeContainer />
+      <div className='footer'>
+        Made with
+        <span role='img' aria-label='heart'> ❤️ </span>
+        <a href='https://github.com/lgm527' target='_blank' rel='noopener noreferrer'>@lgm527</a> © 2020
+      </div>
     </div>
   );
 }
