@@ -4,8 +4,13 @@ import TreeContainer from './containers/TreeContainer';
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <TreeContainer />
+      <div className='footer'>
+        Made with
+        <span role='img' aria-label='heart'> ❤️ </span>
+        <a href='https://github.com/lgm527'>@lgm527</a> © 2020
+      </div>
     </div>
   );
 }

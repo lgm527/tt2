@@ -1,0 +1,16 @@
+form > * {
+  margin: 5px;
+}
+
+.btn {
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  &:hover {
+    background-color: white;
+    color: black;
+  }
+}
