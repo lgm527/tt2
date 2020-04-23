@@ -9,7 +9,7 @@ function App() {
       <div className='footer'>
         Made with
         <span role='img' aria-label='heart'> ❤️ </span>
-        <a href='https://github.com/lgm527'>@lgm527</a> © 2020
+        <a href='https://github.com/lgm527' target='_blank' rel='noopener noreferrer'>@lgm527</a> © 2020
       </div>
     </div>
   );

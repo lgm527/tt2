@@ -1,11 +1,17 @@
 form {
   margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   & > * {
     margin: 5px;
+    font-size: 16px;
   }
 }
 
-input[type=email] {
+input[type=text], input[type=email] {
+  width: 200px;
   padding: 5px;
   border-radius: 5px;
   border: 0;
@@ -16,7 +22,7 @@ input[type=email] {
 }
 
 input[type=submit] {
-  font-weight: bold;
+  font-family: 'Manrope', sans-serif;
   background-color: black;
   color: white;
   border-radius: 5px;
@@ -24,9 +30,12 @@ input[type=submit] {
   outline: none;
   border: 0;
   cursor: pointer;
-  font-family: 'Manrope', sans-serif;
   &:hover {
     background-color: white;
     color: black;
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 2px 2px rgba(255,255,255,1);
   }
 }
