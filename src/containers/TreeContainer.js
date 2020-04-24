@@ -12,11 +12,12 @@ export default class TreeContainer extends React.Component {
     clicked: false,
     treeSelected: {},
     neighborhood: 'Williamsburg',
+    neighborhoodURL: 'Williamsburg',
     center: { lat: 0, lng: 0 }
   }
 
-  fetchTrees(neighborhood) {
-    fetch(`https://data.cityofnewyork.us/resource/uvpi-gqnh.json?nta_name=${neighborhood}&status=Alive&steward=None&$limit=3000`, {
+  fetchTrees(neighborhoodURL) {
+    fetch(`https://data.cityofnewyork.us/resource/uvpi-gqnh.json?nta_name=${neighborhoodURL}&status=Alive&steward=None&$limit=3000`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -31,7 +32,6 @@ export default class TreeContainer extends React.Component {
         trees: theTrees,
         clicked: false,
         treeSelected: {},
-        neighborhood: neighborhood,
         center: {
           lat: Number(theTrees[50].latitude),
           lng: Number(theTrees[50].longitude)
@@ -64,16 +64,16 @@ export default class TreeContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchTrees(this.state.neighborhood);
+    this.fetchTrees(this.state.neighborhoodURL);
   }
 
   backToMap = () => {
-    this.fetchTrees(this.state.neighborhood);
+    this.fetchTrees(this.state.neighborhoodURL);
   }
 
-  updateNeighborhood = (neighborhood) => {
-    this.setState({ neighborhood: neighborhood });
-    this.fetchTrees(neighborhood);
+  updateNeighborhood = (neighborhoodURL, neighborhood) => {
+    this.setState({ neighborhoodURL: neighborhoodURL, neighborhood: neighborhood });
+    this.fetchTrees(neighborhoodURL);
   }
 
   render() {

@@ -5,7 +5,7 @@ import '../style/Dropdown.scss';
 export default class Dropdown extends React.Component {
 
   state = {
-    neighborhood: 'Williamsburg'
+    neighborhood: { value: '', label: '' }
   }
 
   convertStringToNTACode = (ntaName) => {
@@ -15,11 +15,14 @@ export default class Dropdown extends React.Component {
   }
 
   handleChange = (neighborhood) => {
-    this.setState({neighborhood})
-    this.props.updateNeighborhood(this.convertStringToNTACode(neighborhood.value));
+    this.setState({
+      neighborhood: { value: neighborhood.value, label: neighborhood.value }
+    })
+    this.props.updateNeighborhood(this.convertStringToNTACode(neighborhood.value), neighborhood.value);
   }
 
   render() {
+
     const neighborhoods = [
     'Allerton-Pelham Gardens',
     "Annadale-Huguenot-Prince's Bay-Eltingville",
@@ -211,13 +214,20 @@ export default class Dropdown extends React.Component {
       return {value: neighborhood, label: neighborhood};
     });
 
+    const selection = this.state.neighborhood.value === ''
+      ?
+      { value: this.props.neighborhood, label: this.props.neighborhood }
+      :
+      this.state.neighborhood;
+
     return (
       <div className='header'>
+        <label>Neighborhood: </label>
         <Select
           id='dropdown'
           options={options}
           onChange={this.handleChange}
-          defaultValue={this.props.neighborhood}
+          value={selection}
         />
       </div>
     )
