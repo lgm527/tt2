@@ -222,7 +222,7 @@ export default class Dropdown extends React.Component {
 
     return (
       <div className='header'>
-        <label>Neighborhood: </label>
+        <label>NYC Neighborhood: </label>
         <Select
           id='dropdown'
           options={options}
