@@ -8,34 +8,32 @@ form {
     margin: 5px;
     font-size: 16px;
   }
-}
-
-input[type=text], input[type=email] {
-  width: 200px;
-  padding: 5px;
-  border-radius: 5px;
-  border: 0;
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 2px 2px rgba(0,0,0,1);
+  input[type=text], input[type=email] {
+    width: 200px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 0;
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 2px 2px rgba(0,0,0,1);
+    }
   }
-}
-
-input[type=submit] {
-  font-family: 'Manrope', sans-serif;
-  background-color: black;
-  color: white;
-  border-radius: 5px;
-  padding: 5px 10px;
-  outline: none;
-  border: 0;
-  cursor: pointer;
-  &:hover {
-    background-color: white;
-    color: black;
-  }
-  &:focus {
+  input[type=submit] {
+    font-family: 'Manrope', sans-serif;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
     outline: none;
-    box-shadow: 0 0 2px 2px rgba(255,255,255,1);
+    border: 0;
+    cursor: pointer;
+    &:hover {
+      background-color: white;
+      color: black;
+    }
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 2px 2px rgba(255,255,255,1);
+    }
   }
 }
