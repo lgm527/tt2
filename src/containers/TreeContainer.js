@@ -4,6 +4,8 @@ import TreeCard from '../components/TreeCard';
 import Dropdown from '../components/Dropdown';
 import '../style/TreeContainer.scss';
 import tt2 from '../assets/tt2.png';
+import { Query } from 'react-apollo';
+import { GET_TREES } from '../utils';
 
 export default class TreeContainer extends React.Component {
 

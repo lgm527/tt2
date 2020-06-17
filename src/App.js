@@ -1,11 +1,12 @@
 import React from 'react';
 import './style/App.scss';
 import TreeContainer from './containers/TreeContainer';
+import TreesList from './containers/TreesList';
 
 function App() {
   return (
     <div className='App'>
-      <TreeContainer />
+      <TreesList />
       <div className='footer'>
         Made in
         <span role='img' aria-label='NYC'> 🗽 </span>
