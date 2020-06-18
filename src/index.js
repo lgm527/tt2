@@ -9,12 +9,17 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 const restLink = new RestLink({
-  uri: 'https://data.cityofnewyork.us/resource/uvpi-gqnh.json'
+  uri: 'https://data.cityofnewyork.us/resource/uvpi-gqnh.json',
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'X-App-Token': process.env.REACT_APP_TREE_KEY
+  }
 });
 
 const client = new ApolloClient({
   link: restLink,
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache()
 });
 
 const ApolloApp = () => (

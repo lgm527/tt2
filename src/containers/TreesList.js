@@ -24,8 +24,9 @@ const List = ({ trees }) => (
 )
 
 const TreesList = () => {
-  <Query query={GET_TREES}>
+  return <Query query={GET_TREES}>
   {({ loading, error, data }) => {
+    console.log(data);
     if (loading) return 'Loading...'
     if (error) return `Error! ${error.message}`
     if (data) {
