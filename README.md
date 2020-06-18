@@ -19,4 +19,5 @@ Utilized EmailJS SDK to provide email functionality
 graphQL branch
 
 goal: stop over-fetching data
+
 tools: graphQL, apollo
