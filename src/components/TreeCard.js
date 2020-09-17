@@ -4,7 +4,26 @@ import EmailTree from './EmailTree';
 
 export default function TreeCard(props) {
 
-  const { normalizeString, tree, backToMap } = props
+  const { tree, backToMap } = props
+
+  const normalizeString = (str) => {
+    let res
+    let theString
+      if (str !== undefined && str !== null) {
+        theString = str.replace(/[^a-zA-Z\d\s:]*/g, '')
+        if (str.includes(' ')){
+        let words = theString.split(' ')
+        let result = []
+        words.forEach((word) => {
+          result.push( word.charAt(0).toUpperCase() + word.slice(1).toLowerCase() )
+        })
+        res = result.join(' ')
+        } else {
+          res = theString.charAt(0).toUpperCase() + theString.slice(1).toLowerCase()
+        }
+      }
+      return res;
+    }
 
   const normalizedTree = {
     ...tree,

@@ -40,25 +40,6 @@ export default class TreeContainer extends React.Component {
     })
   }
 
-  normalizeString = (str) => {
-  let res
-  let theString
-    if (str !== undefined && str !== null) {
-      theString = str.replace(/[^a-zA-Z\d\s:]*/g, '')
-      if (str.includes(' ')){
-      let words = theString.split(' ')
-      let result = []
-      words.forEach((word) => {
-        result.push( word.charAt(0).toUpperCase() + word.slice(1).toLowerCase() )
-      })
-      res = result.join(' ')
-      } else {
-        res = theString.charAt(0).toUpperCase() + theString.slice(1).toLowerCase()
-      }
-    }
-    return res;
-  }
-
   handleClick = (tree) => {
     this.setState({ treeSelected: tree, clicked: true });
   }
@@ -77,7 +58,7 @@ export default class TreeContainer extends React.Component {
   }
 
   render() {
-    const { normalizeString, handleClick, backToMap } = this;
+    const { handleClick, backToMap } = this;
 
     const Marker = props => {
       return <img
@@ -101,7 +82,6 @@ export default class TreeContainer extends React.Component {
         { this.state.clicked ?
           <TreeCard
           tree={this.state.treeSelected}
-          normalizeString={normalizeString}
           backToMap={backToMap}
           />
           :
