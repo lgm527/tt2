@@ -85,17 +85,15 @@ export default class TreeContainer extends React.Component {
           :
           <div>
             <ReactMapGL
-              viewport={{
-                latitude: this.state.center.lat,
-                longitude: this.state.center.lng,
-                zoom: 8
-              }}
+              latitude={this.state.center.lat}
+              longitude={this.state.center.lng}
+              zoom={15}
               width="100vw"
               height="80vh"
               mapStyle="mapbox://styles/mapbox/dark-v9"
               // onViewportChange={viewport => this.setState({viewport})}
               mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_KEY}
-              style={{cursor: 'pointer', borderRadius: '10px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}
+              // style={{cursor: 'pointer', borderRadius: '10px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}
               >
               {theTrees}
             </ReactMapGL>
