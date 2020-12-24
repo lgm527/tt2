@@ -10,10 +10,10 @@
     "emailjs-com": "^2.4.1",
     "mapbox-gl": "1.13.0",
     "node-sass": "^4.13.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "react-map-gl": "^6.0.2",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^4.0.1",
     "react-select": "^3.1.0"
   },
   "scripts": {
