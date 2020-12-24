@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactMapGL, {Marker, NavigationControl} from 'react-map-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import TreeCard from '../components/TreeCard';
 import Dropdown from '../components/Dropdown';
 import '../style/TreeContainer.scss';
