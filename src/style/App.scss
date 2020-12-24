@@ -4,9 +4,10 @@
   position: fixed;
   text-align: center;
   width: 100%;
+  color: white;
   background-color: rgba(0, 0, 0, .1);
   a {
-    color: black;
+    color: white;
     &:hover {
       text-transform: uppercase;
       font-weight: bold;
