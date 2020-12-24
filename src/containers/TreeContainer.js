@@ -67,10 +67,10 @@ export default class TreeContainer extends React.Component {
   }
 
   render() {
-    const { handleClick, backToMap } = this;
-    const { viewport } = this.state;
+    const { handleClick, backToMap, handleViewportChange, updateNeighborhood } = this;
+    const { viewport, clicked, trees, neighborhood, treeSelected } = this.state;
 
-    const theTrees = this.state.trees.map((tree) => {
+    const theTrees = trees.map((tree) => {
       return <Marker tree={tree} latitude={Number(tree.latitude)} longitude={Number(tree.longitude)} key={tree.tree_id}>
               <img
               src='https://maps.google.com/mapfiles/ms/icons/tree.png'
@@ -86,14 +86,14 @@ export default class TreeContainer extends React.Component {
     return (
       <div id='tree'>
         <img src={tt2} className='tt2-logo header' alt='logo'/>
-        { this.state.clicked ? null : <Dropdown updateNeighborhood={this.updateNeighborhood} neighborhood={this.state.neighborhood}/> }
-        { this.state.clicked ?
+        { clicked ? null : <Dropdown updateNeighborhood={updateNeighborhood} neighborhood={neighborhood}/> }
+        { clicked ?
           <TreeCard
-          tree={this.state.treeSelected}
+          tree={treeSelected}
           backToMap={backToMap}
           />
           :
-          <div>
+          <>
             <ReactMapGL
               latitude={viewport.latitude}
               longitude={viewport.longitude}
@@ -102,15 +102,15 @@ export default class TreeContainer extends React.Component {
               height="80vh"
               mapStyle="mapbox://styles/mapbox/dark-v9"
               mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_KEY}
-              onViewportChange={(viewport) => {this.handleViewportChange(viewport)}}
-              // style={{cursor: 'pointer', borderRadius: '10px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}
+              onViewportChange={(viewport) => handleViewportChange(viewport)}
               >
-              {theTrees}
-              <div style={{position: 'absolute', right: 0}}>
-                <NavigationControl />
-              </div>
+                {theTrees}
+                <div style={{position: 'absolute', right: 0}}>
+                  <NavigationControl />
+                </div>
             </ReactMapGL>
-          </div> }
+          </> 
+          }
       </div>
     )
   }
