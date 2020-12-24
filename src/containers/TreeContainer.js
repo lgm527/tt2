@@ -1,5 +1,6 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
+import ReactMapGL, {Marker} from 'react-map-gl';
 import TreeCard from '../components/TreeCard';
 import Dropdown from '../components/Dropdown';
 import '../style/TreeContainer.scss';
@@ -60,19 +61,28 @@ export default class TreeContainer extends React.Component {
   render() {
     const { handleClick, backToMap } = this;
 
-    const Marker = props => {
-      return <img
-            src='https://maps.google.com/mapfiles/ms/icons/tree.png'
-            onClick={() => handleClick(props.tree)}
-            key={props.tree.tree_id}
-            tree={props.tree}
-            style={{cursor: 'pointer'}}
-            alt='marker'
-          />
-    }
+    // const Marker = props => {
+    //   return <img
+    //         src='https://maps.google.com/mapfiles/ms/icons/tree.png'
+    //         onClick={() => handleClick(props.tree)}
+    //         key={props.tree.tree_id}
+    //         tree={props.tree}
+    //         style={{cursor: 'pointer'}}
+    //         alt='marker'
+    //       />
+    // }
 
     const theTrees = this.state.trees.map((tree) => {
-      return <Marker tree={tree} lat={tree.latitude} lng={tree.longitude} key={tree.tree_id} />
+      return <Marker tree={tree} lat={tree.latitude} lng={tree.longitude} key={tree.tree_id}>
+              <img
+              src='https://maps.google.com/mapfiles/ms/icons/tree.png'
+              onClick={() => handleClick(tree)}
+              key={tree.tree_id}
+              tree={tree}
+              style={{cursor: 'pointer'}}
+              alt='marker'
+              />
+            </Marker>
     });
 
     return (
@@ -86,7 +96,7 @@ export default class TreeContainer extends React.Component {
           />
           :
           <div style={{height: '30vh', width: '50%', marginTop: '5%'}}>
-            <GoogleMapReact
+            <ReactMapGL
               bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_KEY }}
               zoom={16}
               defaultCenter={{ lat: 40.70513302, lng: -73.95067344 }}
@@ -95,7 +105,7 @@ export default class TreeContainer extends React.Component {
               style={{cursor: 'pointer', borderRadius: '10px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}
               >
               {theTrees}
-            </GoogleMapReact>
+            </ReactMapGL>
           </div> }
       </div>
     )
