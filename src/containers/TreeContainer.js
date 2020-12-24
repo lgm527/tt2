@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactMapGL, {Marker} from 'react-map-gl';
+import ReactMapGL, {Marker, NavigationControl} from 'react-map-gl';
 import TreeCard from '../components/TreeCard';
 import Dropdown from '../components/Dropdown';
 import '../style/TreeContainer.scss';
@@ -13,7 +13,11 @@ export default class TreeContainer extends React.Component {
     treeSelected: {},
     neighborhood: 'Williamsburg',
     neighborhoodURL: 'Williamsburg',
-    center: { lat: 0, lng: 0 }
+    viewport: {
+      latitude: 0,
+      longitude: 0,
+      zoom: 14
+    }
   }
 
   fetchTrees(neighborhoodURL) {
@@ -32,9 +36,10 @@ export default class TreeContainer extends React.Component {
         trees: theTrees,
         clicked: false,
         treeSelected: {},
-        center: {
-          lat: Number(theTrees[50].latitude),
-          lng: Number(theTrees[50].longitude)
+        viewport: {
+          latitude: Number(theTrees[50].latitude),
+          longitude: Number(theTrees[50].longitude),
+          zoom: 14
         }
       })
     })
@@ -57,8 +62,13 @@ export default class TreeContainer extends React.Component {
     this.fetchTrees(neighborhoodURL);
   }
 
+  handleViewportChange = (viewport) => {
+    this.setState({viewport})
+  }
+
   render() {
     const { handleClick, backToMap } = this;
+    const { viewport } = this.state;
 
     const theTrees = this.state.trees.map((tree) => {
       return <Marker tree={tree} latitude={Number(tree.latitude)} longitude={Number(tree.longitude)} key={tree.tree_id}>
@@ -85,17 +95,20 @@ export default class TreeContainer extends React.Component {
           :
           <div>
             <ReactMapGL
-              latitude={this.state.center.lat}
-              longitude={this.state.center.lng}
-              zoom={15}
+              latitude={viewport.latitude}
+              longitude={viewport.longitude}
+              zoom={viewport.zoom}
               width="100vw"
               height="80vh"
               mapStyle="mapbox://styles/mapbox/dark-v9"
-              // onViewportChange={viewport => this.setState({viewport})}
               mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_KEY}
+              onViewportChange={(viewport) => {this.handleViewportChange(viewport)}}
               // style={{cursor: 'pointer', borderRadius: '10px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}
               >
               {theTrees}
+              <div style={{position: 'absolute', right: 0}}>
+                <NavigationControl />
+              </div>
             </ReactMapGL>
           </div> }
       </div>
