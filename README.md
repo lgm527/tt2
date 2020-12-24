@@ -10,6 +10,6 @@ Locate trees on the NYC streets to volunteer stewardship
 
 Extracted data from NYC Open Data API 2015 Street Tree Census
 
-Built a React front end with Google Maps API to render interactive google map with trees
+Built a React front end with the Mapbox API to render an interactive map populated with trees
 
 Utilized EmailJS SDK to provide email functionality
