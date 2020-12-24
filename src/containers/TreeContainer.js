@@ -16,7 +16,7 @@ export default class TreeContainer extends React.Component {
     viewport: {
       latitude: 0,
       longitude: 0,
-      zoom: 14
+      zoom: 15
     }
   }
 
@@ -39,7 +39,7 @@ export default class TreeContainer extends React.Component {
         viewport: {
           latitude: Number(theTrees[50].latitude),
           longitude: Number(theTrees[50].longitude),
-          zoom: 14
+          zoom: 15
         }
       })
     })
@@ -99,8 +99,8 @@ export default class TreeContainer extends React.Component {
               longitude={viewport.longitude}
               zoom={viewport.zoom}
               width="100vw"
-              height="80vh"
-              mapStyle="mapbox://styles/mapbox/dark-v9"
+              height="100vh"
+              mapStyle="mapbox://styles/mapbox/light-v9"
               mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_KEY}
               onViewportChange={(viewport) => handleViewportChange(viewport)}
               >
