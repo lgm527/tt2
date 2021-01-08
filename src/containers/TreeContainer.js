@@ -1,8 +1,9 @@
 import React from 'react';
-import ReactMapGL, {Marker, NavigationControl} from 'react-map-gl';
+import ReactMapGL, { NavigationControl } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import TreeCard from '../components/TreeCard';
 import Dropdown from '../components/Dropdown';
+import Markers from '../components/Markers';
 import '../style/TreeContainer.scss';
 import tt2 from '../assets/tt2.png';
 
@@ -71,19 +72,6 @@ export default class TreeContainer extends React.Component {
     const { handleClick, backToMap, handleViewportChange, updateNeighborhood } = this;
     const { viewport, clicked, trees, neighborhood, treeSelected } = this.state;
 
-    const theTrees = trees.map((tree) => {
-      return <Marker tree={tree} latitude={Number(tree.latitude)} longitude={Number(tree.longitude)} key={tree.tree_id}>
-              <img
-              src='https://maps.google.com/mapfiles/ms/icons/tree.png'
-              onClick={() => handleClick(tree)}
-              key={tree.tree_id}
-              tree={tree}
-              style={{cursor: 'pointer'}}
-              alt='marker'
-              />
-            </Marker>
-    });
-
     return (
       <div id='tree'>
         <img src={tt2} className='tt2-logo header' alt='logo'/>
@@ -105,7 +93,7 @@ export default class TreeContainer extends React.Component {
               mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_KEY}
               onViewportChange={(viewport) => handleViewportChange(viewport)}
               >
-                {theTrees}
+                <Markers data={trees} handleClick={handleClick}/>
                 <div style={{position: 'absolute', right: 0}}>
                   <NavigationControl />
                 </div>
