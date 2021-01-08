@@ -47,20 +47,20 @@ export default class TreeContainer extends React.Component {
   }
 
   handleClick = (tree) => {
-    this.setState({ treeSelected: tree, clicked: true });
+    this.setState({ treeSelected: tree, clicked: true })
   }
 
   componentDidMount() {
-    this.fetchTrees(this.state.neighborhoodURL);
+    this.fetchTrees(this.state.neighborhoodURL)
   }
 
   backToMap = () => {
-    this.fetchTrees(this.state.neighborhoodURL);
+    this.setState({  clicked: false })
   }
 
   updateNeighborhood = (neighborhoodURL, neighborhood) => {
-    this.setState({ neighborhoodURL: neighborhoodURL, neighborhood: neighborhood });
-    this.fetchTrees(neighborhoodURL);
+    this.setState({ neighborhoodURL: neighborhoodURL, neighborhood: neighborhood })
+    this.fetchTrees(neighborhoodURL)
   }
 
   handleViewportChange = (viewport) => {
