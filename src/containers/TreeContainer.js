@@ -56,7 +56,7 @@ export default class TreeContainer extends React.Component {
   }
 
   backToMap = () => {
-    this.setState({  clicked: false })
+    this.setState({  treeSelected: {}, clicked: false })
   }
 
   updateNeighborhood = (neighborhoodURL, neighborhood) => {
