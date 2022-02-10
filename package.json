@@ -9,7 +9,7 @@
     "@testing-library/user-event": "^7.2.1",
     "emailjs-com": "^2.4.1",
     "mapbox-gl": "1.13.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-map-gl": "^5.2.11",
